@@ -1,6 +1,6 @@
 grammar OrdenesServicios;
 
-script         : (command SEMICOLON)* EOF;
+script         : (command FIN_INSTRUCCION)* EOF;
 
 command
     : loadCmd
@@ -34,6 +34,6 @@ LOGIC_OP       : 'AND' | 'OR';
 STRING         : '"' (~["\r\n])* '"';
 NUMBER         : [0-9]+;
 
-SEMICOLON      : ';';
+FIN_INSTRUCCION      : ';';
 
 WS             : [ \t\r\n]+ -> skip;

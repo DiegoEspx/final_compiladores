@@ -50,7 +50,8 @@ class OrdenesServiciosParser ( Parser ):
 
     symbolicNames = [ "<INVALID>", "LOAD", "FILTER", "COLUMN", "AGGREGATE", 
                       "PRINT", "COUNT", "SUM", "AVERAGE", "BETWEEN", "OPERATOR", 
-                      "LOGIC_OP", "STRING", "NUMBER", "SEMICOLON", "WS" ]
+                      "LOGIC_OP", "STRING", "NUMBER", "FIN_INSTRUCCION", 
+                      "WS" ]
 
     RULE_script = 0
     RULE_command = 1
@@ -78,7 +79,7 @@ class OrdenesServiciosParser ( Parser ):
     LOGIC_OP=11
     STRING=12
     NUMBER=13
-    SEMICOLON=14
+    FIN_INSTRUCCION=14
     WS=15
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
@@ -107,11 +108,11 @@ class OrdenesServiciosParser ( Parser ):
                 return self.getTypedRuleContext(OrdenesServiciosParser.CommandContext,i)
 
 
-        def SEMICOLON(self, i:int=None):
+        def FIN_INSTRUCCION(self, i:int=None):
             if i is None:
-                return self.getTokens(OrdenesServiciosParser.SEMICOLON)
+                return self.getTokens(OrdenesServiciosParser.FIN_INSTRUCCION)
             else:
-                return self.getToken(OrdenesServiciosParser.SEMICOLON, i)
+                return self.getToken(OrdenesServiciosParser.FIN_INSTRUCCION, i)
 
         def getRuleIndex(self):
             return OrdenesServiciosParser.RULE_script
@@ -147,7 +148,7 @@ class OrdenesServiciosParser ( Parser ):
                 self.state = 16
                 self.command()
                 self.state = 17
-                self.match(OrdenesServiciosParser.SEMICOLON)
+                self.match(OrdenesServiciosParser.FIN_INSTRUCCION)
                 self.state = 23
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)

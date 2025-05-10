@@ -68,11 +68,11 @@ class MyVisitor(OrdenesServiciosVisitor):
             print("[ERROR] No se ha cargado ningún archivo.")
             return
 
-        df_filtered = self.df
+        # Aplicar filtros directamente a self.df
         if self.filters:
             query_expr = " and ".join(self.filters)
             try:
-                df_filtered = df_filtered.query(query_expr)
+                self.df = self.df.query(query_expr)
             except Exception as e:
                 print(f"[ERROR] Error al aplicar filtros: {e}")
                 return
@@ -81,7 +81,7 @@ class MyVisitor(OrdenesServiciosVisitor):
         for func, col in self.aggregates:
             if func in AGGREGATE_SWITCH:
                 try:
-                    resultado = AGGREGATE_SWITCH[func](df_filtered, col)
+                    resultado = AGGREGATE_SWITCH[func](self.df, col)
                     print(resultado)
                 except Exception as e:
                     print(f"[ERROR] al ejecutar '{func}' en '{col}': {e}")

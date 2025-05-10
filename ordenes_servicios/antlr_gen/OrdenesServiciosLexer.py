@@ -77,7 +77,7 @@ class OrdenesServiciosLexer(Lexer):
     LOGIC_OP = 11
     STRING = 12
     NUMBER = 13
-    SEMICOLON = 14
+    FIN_INSTRUCCION = 14
     WS = 15
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
@@ -91,11 +91,11 @@ class OrdenesServiciosLexer(Lexer):
     symbolicNames = [ "<INVALID>",
             "LOAD", "FILTER", "COLUMN", "AGGREGATE", "PRINT", "COUNT", "SUM", 
             "AVERAGE", "BETWEEN", "OPERATOR", "LOGIC_OP", "STRING", "NUMBER", 
-            "SEMICOLON", "WS" ]
+            "FIN_INSTRUCCION", "WS" ]
 
     ruleNames = [ "LOAD", "FILTER", "COLUMN", "AGGREGATE", "PRINT", "COUNT", 
                   "SUM", "AVERAGE", "BETWEEN", "OPERATOR", "LOGIC_OP", "STRING", 
-                  "NUMBER", "SEMICOLON", "WS" ]
+                  "NUMBER", "FIN_INSTRUCCION", "WS" ]
 
     grammarFileName = "OrdenesServicios.g4"
 
